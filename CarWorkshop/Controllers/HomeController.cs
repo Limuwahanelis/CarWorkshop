@@ -17,10 +17,34 @@ public class HomeController : Controller
     {
         return View();
     }
-
+    public IActionResult About()
+    {
+        About ab = new About()
+        {
+            Description = "About page",
+            Title = "Tile page about",
+            Tags = new List<string>() { "Web", "Car" }
+        };
+        return View(ab);
+    }
     public IActionResult Privacy()
     {
-        return View();
+
+        List<Person> persons = new List<Person>()
+        {
+            new Person()
+            {
+                Firstname = "Jakub",
+                Lastname ="Kozera"
+            },
+            new Person()
+            {
+                Firstname="Tomek",
+                Lastname="Nowak"
+            }
+        };
+
+        return View(persons);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
