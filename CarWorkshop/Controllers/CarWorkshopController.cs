@@ -21,7 +21,7 @@ namespace CarWorkshop.Controllers
         {
             if( !ModelState.IsValid)
             {
-                return View();
+                return View(carWorkshop);
             }
             await _carWorkshopRepository.Create(carWorkshop);
             return RedirectToAction(nameof(Create)); // TODO: refactor
