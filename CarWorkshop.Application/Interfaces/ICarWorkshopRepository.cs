@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarWorkshop.Infrastructure.Interfaces
+namespace CarWorkshop.Application.Interfaces
 {
     public interface ICarWorkshopRepository
     {
         Task Create(CarWorkshopForm carWorkshop);
+        Task<Domain.Entities.CarWorkshop?> GetByName(string name);
     }
 }

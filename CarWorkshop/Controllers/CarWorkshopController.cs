@@ -1,5 +1,5 @@
 ﻿using CarWorkshop.Application.Entities;
-using CarWorkshop.Infrastructure.Interfaces;
+using CarWorkshop.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 namespace CarWorkshop.Controllers
 {

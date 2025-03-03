@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
 using CarWorkshop.Application.Entities;
+using CarWorkshop.Application.Interfaces;
 using CarWorkshop.Infrastructure.Data;
-using CarWorkshop.Infrastructure.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,11 @@ namespace CarWorkshop.Infrastructure.Repositories
             carWorkshop.EncodeName();
             _context.Add(carWorkshop);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<Domain.Entities.CarWorkshop?> GetByName(string name)
+        {
+            return await _context.CarWorkshops.FirstOrDefaultAsync(x => x.Name.ToLower() == name.ToLower());
         }
     }
 }

@@ -1,5 +1,5 @@
-﻿using CarWorkshop.Infrastructure.Data;
-using CarWorkshop.Infrastructure.Interfaces;
+﻿using CarWorkshop.Application.Interfaces;
+using CarWorkshop.Infrastructure.Data;
 using CarWorkshop.Infrastructure.Repositories;
 using CarWorkshop.Infrastructure.Seeders;
 using Microsoft.EntityFrameworkCore;
