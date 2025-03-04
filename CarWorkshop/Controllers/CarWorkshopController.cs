@@ -10,7 +10,11 @@ namespace CarWorkshop.Controllers
         {
             _carWorkshopRepository = carWorkshopRepository;
         }
-
+        public async Task<IActionResult> Index()
+        {
+            IEnumerable<CarWorkshopForm> workshops= await _carWorkshopRepository.GetAll();
+            return View(workshops);
+        }
         public ActionResult Create()
         {
             return View();
