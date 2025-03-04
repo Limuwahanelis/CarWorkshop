@@ -28,7 +28,7 @@ namespace CarWorkshop.Controllers
                 return View(carWorkshop);
             }
             await _carWorkshopRepository.Create(carWorkshop);
-            return RedirectToAction(nameof(Create)); // TODO: refactor
+            return RedirectToAction(nameof(Index));
         }
     }
 }
