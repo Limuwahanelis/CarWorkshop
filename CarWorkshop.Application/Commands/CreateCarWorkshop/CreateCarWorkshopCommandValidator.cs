@@ -7,12 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 using CarWorkshop.Application.Interfaces;
 using CarWorkshop.Domain.Entities;
+using CarWorkshop.Application.Entities;
 
-namespace CarWorkshop.Application.Entities
+namespace CarWorkshop.Application.Commands.CreateCarWorkshop
 {
-    public class CarWorkshopFormValidator: AbstractValidator<CarWorkshopForm>
+    public class CreateCarWorkshopCommandValidator : AbstractValidator<CreateCarWorkshopCommand>
     {
-        public CarWorkshopFormValidator(ICarWorkshopRepository carWorkshopRepository) 
+        public CreateCarWorkshopCommandValidator(ICarWorkshopRepository carWorkshopRepository)
         {
             RuleFor(x => x.Name)
                 .NotEmpty()

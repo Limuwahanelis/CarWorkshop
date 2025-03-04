@@ -20,17 +20,16 @@ namespace CarWorkshop.Infrastructure.Repositories
             _context = context;
             _mapper = mapper;
         }
-        public async Task Create(CarWorkshopForm carWorkshopForm)
+        public async Task Create(Domain.Entities.CarWorkshop carWorkshop)
         {
-            Domain.Entities.CarWorkshop carWorkshop = _mapper.Map<Domain.Entities.CarWorkshop>(carWorkshopForm);
-            carWorkshop.EncodeName();
+
             _context.Add(carWorkshop);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<CarWorkshopForm>> GetAll()
+        public async Task<IEnumerable<Domain.Entities.CarWorkshop>> GetAll()
         {
-            return _mapper.Map<IEnumerable<CarWorkshopForm>> (await _context.CarWorkshops.ToListAsync());
+            return await _context.CarWorkshops.ToListAsync();
         }
 
         public async Task<Domain.Entities.CarWorkshop?> GetByName(string name)

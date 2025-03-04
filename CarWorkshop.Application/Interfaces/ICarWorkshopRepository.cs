@@ -9,8 +9,8 @@ namespace CarWorkshop.Application.Interfaces
 {
     public interface ICarWorkshopRepository
     {
-        Task Create(CarWorkshopForm carWorkshop);
-        Task<IEnumerable<CarWorkshopForm>> GetAll();
+        Task Create(Domain.Entities.CarWorkshop carWorkshop);
+        Task<IEnumerable<Domain.Entities.CarWorkshop>> GetAll();
         Task<Domain.Entities.CarWorkshop?> GetByName(string name);
     }
 }
