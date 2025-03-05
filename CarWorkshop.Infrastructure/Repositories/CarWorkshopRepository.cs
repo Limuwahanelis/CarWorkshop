@@ -32,6 +32,11 @@ namespace CarWorkshop.Infrastructure.Repositories
             return await _context.CarWorkshops.ToListAsync();
         }
 
+        public async Task<Domain.Entities.CarWorkshop> GetByEncodedName(string encodedName)
+        {
+            return await _context.CarWorkshops.FirstAsync(x=>x.EncodedName==encodedName);
+        }
+
         public async Task<Domain.Entities.CarWorkshop?> GetByName(string name)
         {
             return await _context.CarWorkshops.FirstOrDefaultAsync(x => x.Name.ToLower() == name.ToLower());

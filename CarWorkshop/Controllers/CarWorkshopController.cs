@@ -19,11 +19,16 @@ namespace CarWorkshop.Controllers
             IEnumerable<CarWorkshopForm> workshops = await _mediator.Send(new GetAllCarWorkshopsQuerry());
             return View(workshops);
         }
-        public ActionResult Create()
+        public IActionResult Create()
         {
             return View();
         }
-
+        [Route("CarWorkshop/{encodedName}/Details")]
+        public async Task<IActionResult> Details(string encodedName)
+        {
+            CarWorkshopForm workshop=await _mediator.Send(new GetCarWorkshopByEncodedNameQuery(encodedName));
+            return View(workshop);
+        }
         [HttpPost]
         public async Task<IActionResult> Create(CreateCarWorkshopCommand command)
         {
