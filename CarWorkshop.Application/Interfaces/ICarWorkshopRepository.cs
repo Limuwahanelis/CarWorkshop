@@ -15,5 +15,7 @@ namespace CarWorkshop.Application.Interfaces
         Task<Domain.Entities.CarWorkshop?> GetByName(string name);
 
         Task<Domain.Entities.CarWorkshop> GetByEncodedName(string encodedName);
+
+        Task Update(Domain.Entities.CarWorkshop carWorkshop);
     }
 }
