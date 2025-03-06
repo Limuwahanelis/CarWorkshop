@@ -43,5 +43,6 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
 
+app.MapRazorPages(); // identity uses razor pages so we add them
 
 app.Run();
