@@ -16,13 +16,19 @@ namespace CarWorkshop.Application.ApplicationUser
         {
             this._httpContextAccessor = httpContextAccessor;
         }
-        public CurrentUser GetCurrentUser()
+        public CurrentUser? GetCurrentUser()
         {
             ClaimsPrincipal? user = _httpContextAccessor.HttpContext?.User;
             if (user == null)
             {
                 throw new InvalidOperationException("Context user is not present");
             }
+
+            if(user.Identity==null || !user.Identity.IsAuthenticated)
+            {
+                return null;
+            }
+
             string id = user.FindFirst(x => x.Type == ClaimTypes.NameIdentifier)!.Value;
             string email = user.FindFirst(x => x.Type == ClaimTypes.Email)!.Value;
             return new CurrentUser(id, email);

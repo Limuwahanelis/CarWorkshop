@@ -1,4 +1,5 @@
-﻿using CarWorkshop.Application.Interfaces;
+﻿using CarWorkshop.Application.ApplicationUser;
+using CarWorkshop.Application.Interfaces;
 using CarWorkshop.Domain.Entities;
 using MediatR;
 using System;
@@ -12,15 +13,27 @@ namespace CarWorkshop.Application.Commands.CreateCarWorkshop
     public class EditCarWorkshopCommandHandler : IRequestHandler<EditCarWorkshopCommand>
     {
         private ICarWorkshopRepository _repository;
+        private readonly IUserContext _userContext;
 
-        public EditCarWorkshopCommandHandler(ICarWorkshopRepository repository)
+        public EditCarWorkshopCommandHandler(ICarWorkshopRepository repository,IUserContext userContext)
         {
             _repository = repository;
+            _userContext = userContext;
         }
 
         public async Task Handle(EditCarWorkshopCommand request, CancellationToken cancellationToken)
         {
-             Domain.Entities.CarWorkshop workshop=await _repository.GetByEncodedName(request.EncodedName);
+             Domain.Entities.CarWorkshop workshop=await _repository.GetByEncodedName(request.EncodedName!);
+
+            // Add check for people who can send form without the use of the application.
+            CurrentUser? user = _userContext.GetCurrentUser();
+            bool isEditable = user != null && workshop.CreatedById == user.Id;
+
+            if(isEditable)
+            {
+                return;
+            }
+
             workshop.Description = request.Description;
             workshop.About = request.About;
             workshop.ContactDetails.City = request.City;
