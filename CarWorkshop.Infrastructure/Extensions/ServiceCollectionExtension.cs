@@ -24,7 +24,9 @@ namespace CarWorkshop.Infrastructure.Extensions
             services.AddDefaultIdentity<IdentityUser>(options => 
             {
                 options.Stores.MaxLengthForKeys = 450;
-                }).AddEntityFrameworkStores<CarWorkshopDbContext>();
+             })
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<CarWorkshopDbContext>();
 
             services.AddScoped<CarWorkshopSeeder>();
             services.AddScoped<ICarWorkshopRepository,CarWorkshopRepository>();

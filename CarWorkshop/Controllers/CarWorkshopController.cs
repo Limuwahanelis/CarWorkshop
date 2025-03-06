@@ -23,13 +23,13 @@ namespace CarWorkshop.Controllers
             IEnumerable<CarWorkshopForm> workshops = await _mediator.Send(new GetAllCarWorkshopsQuerry());
             return View(workshops);
         }
-        [Authorize]
+        [Authorize(Roles ="Owner")]
         public IActionResult Create()
         {
             return View();
         }
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Owner")]
         public async Task<IActionResult> Create(CreateCarWorkshopCommand command)
         {
             if (!ModelState.IsValid)
