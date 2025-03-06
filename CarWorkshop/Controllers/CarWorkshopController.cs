@@ -46,7 +46,7 @@ namespace CarWorkshop.Controllers
             CarWorkshopForm workshop=await _mediator.Send(new GetCarWorkshopByEncodedNameQuery(encodedName));
             return View(workshop);
         }
-
+        [Authorize(Roles ="Moderator,Owner")]
         [Route("CarWorkshop/{encodedName}/Edit")]
         public async Task<IActionResult> Edit(string encodedName)
         {
@@ -61,6 +61,7 @@ namespace CarWorkshop.Controllers
             return View(model);
         }
         [HttpPost]
+        [Authorize(Roles = "Moderator,Owner")]
         [Route("CarWorkshop/{encodedName}/Edit")]
         public async Task<IActionResult> Edit(string encodedName, EditCarWorkshopCommand carWorkshop)
         {

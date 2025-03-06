@@ -27,9 +27,9 @@ namespace CarWorkshop.Application.Commands.CreateCarWorkshop
 
             // Add check for people who can send form without the use of the application.
             CurrentUser? user = _userContext.GetCurrentUser();
-            bool isEditable = user != null && workshop.CreatedById == user.Id;
+            bool isEditable = user != null && (workshop.CreatedById == user.Id || user.Roles.Contains("Moderator"));
 
-            if(isEditable)
+            if(!isEditable)
             {
                 return;
             }
