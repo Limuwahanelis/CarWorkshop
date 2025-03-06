@@ -4,6 +4,7 @@ using CarWorkshop.Application.Entities;
 using CarWorkshop.Application.Interfaces;
 using CarWorkshop.Application.Querries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 namespace CarWorkshop.Controllers
 {
@@ -22,9 +23,22 @@ namespace CarWorkshop.Controllers
             IEnumerable<CarWorkshopForm> workshops = await _mediator.Send(new GetAllCarWorkshopsQuerry());
             return View(workshops);
         }
+        [Authorize]
         public IActionResult Create()
         {
             return View();
+        }
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Create(CreateCarWorkshopCommand command)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(command);
+            }
+            
+            await _mediator.Send(command);// _carWorkshopRepository.Create(command);
+            return RedirectToAction(nameof(Index));
         }
         [Route("CarWorkshop/{encodedName}/Details")]
         public async Task<IActionResult> Details(string encodedName)
@@ -32,16 +46,7 @@ namespace CarWorkshop.Controllers
             CarWorkshopForm workshop=await _mediator.Send(new GetCarWorkshopByEncodedNameQuery(encodedName));
             return View(workshop);
         }
-        [HttpPost]
-        public async Task<IActionResult> Create(CreateCarWorkshopCommand command)
-        {
-            if( !ModelState.IsValid)
-            {
-                return View(command);
-            }
-            await _mediator.Send(command);// _carWorkshopRepository.Create(command);
-            return RedirectToAction(nameof(Index));
-        }
+
         [Route("CarWorkshop/{encodedName}/Edit")]
         public async Task<IActionResult> Edit(string encodedName)
         {
