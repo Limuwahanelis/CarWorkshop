@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CarWorkshop.Application.Commands.CreateCarWorkshop;
+using CarWorkshop.Application.Commands.CreateCarWorkshopService;
 using CarWorkshop.Application.Entities;
 using CarWorkshop.Application.Interfaces;
 using CarWorkshop.Application.Querries;
@@ -77,6 +78,27 @@ namespace CarWorkshop.Controllers
             }
             await _mediator.Send(carWorkshop);
             return RedirectToAction(nameof(Index));
+        }
+        //////////// CarWorkshopService
+
+        [Authorize(Roles = "Owner")]
+        public IActionResult CreateCarWorkshopService()
+        {
+            return View();
+        }
+        [HttpPost]
+        [Authorize(Roles = "Owner")]
+        [Route("CarWorkshop/CarWorkshopService")]
+        public async Task<IActionResult> CreateCarWorkshopService(CreateCarWorkshopServiceCommand command)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            await _mediator.Send(command);// _carWorkshopRepository.Create(command);
+
+            return Ok();
         }
     }
 }
