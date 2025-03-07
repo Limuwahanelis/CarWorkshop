@@ -15,7 +15,7 @@ namespace CarWorkshop.Application.Mappings
     {
         public CarWorkshopMappingProfile(IUserContext userContext)
         {
-            CurrentUser user = userContext.GetCurrentUser();
+            CurrentUser? user = userContext.GetCurrentUser();
             // properties with the same name and type are mapped automatically
             CreateMap<CarWorkshopForm, Domain.Entities.CarWorkshop>()
                 .ForMember(x => x.ContactDetails, opt => opt.MapFrom(src => new CarWorkshopContactDetails()
@@ -34,6 +34,9 @@ namespace CarWorkshop.Application.Mappings
 
 
             CreateMap<CarWorkshopForm, EditCarWorkshopCommand>();
+
+            CreateMap<CarWorkshopServiceDto, CarWorkshopService>().ReverseMap();
+
         }
     }
 }

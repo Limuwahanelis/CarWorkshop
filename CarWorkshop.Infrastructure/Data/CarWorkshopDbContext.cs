@@ -11,6 +11,7 @@ namespace CarWorkshop.Infrastructure.Data
     public class CarWorkshopDbContext:IdentityDbContext
     {
         public DbSet<Domain.Entities.CarWorkshop> CarWorkshops { get; set; }
+        public DbSet<Domain.Entities.CarWorkshopService> Services { get; set; }
         public CarWorkshopDbContext(DbContextOptions<CarWorkshopDbContext> options):base(options)
         {
 
