@@ -42,7 +42,7 @@ namespace CarWorkshop.Controllers
                 return View(command);
             }
 
-            //await _mediator.Send(command);// _carWorkshopRepository.Create(command);
+            await _mediator.Send(command);// _carWorkshopRepository.Create(command);
 
             this.SetNotification("success", $"Created carworkshop {command.Name}");
 
