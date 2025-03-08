@@ -10,5 +10,6 @@ namespace CarWorkshop.Application.Interfaces
     public interface ICarWorkshopServiceRepository
     {
         Task Create(CarWorkshopService service);
+        Task<IEnumerable<CarWorkshopService>> GetAllByEncodedName(string encodedname);
     }
 }

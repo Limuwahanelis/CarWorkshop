@@ -1,6 +1,7 @@
 ﻿using CarWorkshop.Application.Interfaces;
 using CarWorkshop.Domain.Entities;
 using CarWorkshop.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,11 @@ namespace CarWorkshop.Infrastructure.Repositories
         {
             _context.Services.Add(service);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<CarWorkshopService>> GetAllByEncodedName(string encodedname)
+        {
+           return await _context.Services.Where(x=>x.CarWorkshop.EncodedName==encodedname).ToListAsync();
         }
     }
 }
