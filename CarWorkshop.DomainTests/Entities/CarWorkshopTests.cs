@@ -22,7 +22,7 @@ namespace CarWorkshop.Domain.Entities.Tests
 
             Action action = () => carWorkshop.EncodeName(); 
 
-            Xunit.Assert.Throws<NullReferenceException>( action);
+            Assert.Throws<NullReferenceException>( action);
         }
     }
 }
