@@ -8,14 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarWorkshop.Application.Commands.CreateCarWorkshop
+namespace CarWorkshop.Application.Commands.EditCarWorkshop
 {
     public class EditCarWorkshopCommandHandler : IRequestHandler<EditCarWorkshopCommand>
     {
         private ICarWorkshopRepository _repository;
         private readonly IUserContext _userContext;
 
-        public EditCarWorkshopCommandHandler(ICarWorkshopRepository repository,IUserContext userContext)
+        public EditCarWorkshopCommandHandler(ICarWorkshopRepository repository, IUserContext userContext)
         {
             _repository = repository;
             _userContext = userContext;
@@ -23,13 +23,13 @@ namespace CarWorkshop.Application.Commands.CreateCarWorkshop
 
         public async Task Handle(EditCarWorkshopCommand request, CancellationToken cancellationToken)
         {
-             Domain.Entities.CarWorkshop workshop=await _repository.GetByEncodedName(request.EncodedName!);
+            Domain.Entities.CarWorkshop workshop = await _repository.GetByEncodedName(request.EncodedName!);
 
             // Add check for people who can send form without the use of the application.
             CurrentUser? user = _userContext.GetCurrentUser();
             bool isEditable = user != null && (workshop.CreatedById == user.Id || user.Roles.Contains("Moderator"));
 
-            if(!isEditable)
+            if (!isEditable)
             {
                 return;
             }

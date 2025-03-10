@@ -6,11 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarWorkshop.Application.Commands.CreateCarWorkshop
+namespace CarWorkshop.Application.Commands.EditCarWorkshop
 {
-    public class EditCarWorkshopCommandValidator: AbstractValidator<EditCarWorkshopCommand>
+    public class EditCarWorkshopCommandValidator : AbstractValidator<EditCarWorkshopCommand>
     {
-        public EditCarWorkshopCommandValidator() 
+        public EditCarWorkshopCommandValidator()
         {
             RuleFor(x => x.Description)
                 .NotEmpty().WithMessage("Please enter description");

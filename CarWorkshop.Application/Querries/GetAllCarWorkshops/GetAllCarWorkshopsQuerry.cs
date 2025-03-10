@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarWorkshop.Application.Querries
+namespace CarWorkshop.Application.Querries.GetAllCarWorkshops
 {
-    public class GetAllCarWorkshopsQuerry: IRequest<IEnumerable<CarWorkshopForm>>
+    public class GetAllCarWorkshopsQuerry : IRequest<IEnumerable<CarWorkshopForm>>
     {
 
     }

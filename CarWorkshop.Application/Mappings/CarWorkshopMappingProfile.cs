@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using CarWorkshop.Application.ApplicationUser;
-using CarWorkshop.Application.Commands.CreateCarWorkshop;
+using CarWorkshop.Application.Commands.EditCarWorkshop;
 using CarWorkshop.Application.Entities;
 using CarWorkshop.Domain.Entities;
 using System;

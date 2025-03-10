@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarWorkshop.Application.Querries
+namespace CarWorkshop.Application.Querries.GetAllCarWorkshops
 {
     public class GetAllCarWorkshopsQuerryHandler : IRequestHandler<GetAllCarWorkshopsQuerry, IEnumerable<CarWorkshopForm>>
     {
@@ -22,7 +22,7 @@ namespace CarWorkshop.Application.Querries
 
         public async Task<IEnumerable<CarWorkshopForm>> Handle(GetAllCarWorkshopsQuerry request, CancellationToken cancellationToken)
         {
-            IEnumerable<CarWorkshopForm> workshops= _mapper.Map<IEnumerable<CarWorkshopForm>>( await _repository.GetAll());
+            IEnumerable<CarWorkshopForm> workshops = _mapper.Map<IEnumerable<CarWorkshopForm>>(await _repository.GetAll());
             return workshops;
         }
     }

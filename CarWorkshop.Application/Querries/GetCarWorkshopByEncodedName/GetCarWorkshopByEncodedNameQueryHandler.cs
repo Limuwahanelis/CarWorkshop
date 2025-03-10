@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarWorkshop.Application.Querries
+namespace CarWorkshop.Application.Querries.GetCarWorkshopByEncodedName
 {
     public class GetCarWorkshopByEncodedNameQueryHandler : IRequestHandler<GetCarWorkshopByEncodedNameQuery, CarWorkshopForm>
     {
@@ -18,13 +18,13 @@ namespace CarWorkshop.Application.Querries
 
         public GetCarWorkshopByEncodedNameQueryHandler(ICarWorkshopRepository repository, IMapper mapper)
         {
-            this._repository = repository;
+            _repository = repository;
             _mapper = mapper;
         }
         public async Task<CarWorkshopForm> Handle(GetCarWorkshopByEncodedNameQuery request, CancellationToken cancellationToken)
         {
-           Domain.Entities.CarWorkshop workshop =await _repository.GetByEncodedName(request.EncodedName);
-           return _mapper.Map<CarWorkshopForm>(workshop);
+            Domain.Entities.CarWorkshop workshop = await _repository.GetByEncodedName(request.EncodedName);
+            return _mapper.Map<CarWorkshopForm>(workshop);
         }
     }
 }

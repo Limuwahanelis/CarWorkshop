@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarWorkshop.Application.Commands.CreateCarWorkshop
+namespace CarWorkshop.Application.Commands.EditCarWorkshop
 {
-    public class EditCarWorkshopCommand:CarWorkshopForm,IRequest
+    public class EditCarWorkshopCommand : CarWorkshopForm, IRequest
     {
         //public string EncodedName { get; set; }
 

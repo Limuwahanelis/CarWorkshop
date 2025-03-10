@@ -1,9 +1,12 @@
 ﻿using AutoMapper;
 using CarWorkshop.Application.Commands.CreateCarWorkshop;
 using CarWorkshop.Application.Commands.CreateCarWorkshopService;
+using CarWorkshop.Application.Commands.EditCarWorkshop;
 using CarWorkshop.Application.Entities;
 using CarWorkshop.Application.Interfaces;
 using CarWorkshop.Application.Querries;
+using CarWorkshop.Application.Querries.GetAllCarWorkshops;
+using CarWorkshop.Application.Querries.GetCarWorkshopByEncodedName;
 using CarWorkshop.Application.Querries.GetCarWorkshopServices;
 using CarWorkshop.Extensions;
 using CarWorkshop.Models;
