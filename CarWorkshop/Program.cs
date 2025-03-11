@@ -46,3 +46,5 @@ app.MapControllerRoute(
 app.MapRazorPages(); // identity uses razor pages so we add them
 
 app.Run();
+
+public partial class Program();
